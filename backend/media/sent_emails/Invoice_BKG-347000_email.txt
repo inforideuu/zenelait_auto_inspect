@@ -1,0 +1,23 @@
+To: sathish@gamail.com
+Subject: [AutoInspect] Payment Confirmed! Booking ID: BKG-347000
+--------------------------------------------------
+Dear sathish kumar,
+
+Thank you for your payment. Your booking has been successfully confirmed!
+
+Booking Details:
+-------------------------------------------
+Booking ID: BKG-347000
+Vehicle Details: toyoto
+Inspection Location: abu dabi - grand mall
+Selected Package: Basic
+Payment Reference: pay_SwGAwId4GpC07o
+Amount Paid: INR 1,299.00
+Inspection Status: Pending
+
+Please find your official secure invoice attached as a PDF to this email. Our certified inspection experts will coordinate with you shortly.
+
+If you have any questions, please contact our support team.
+
+Best regards,
+AutoInspect Network Team

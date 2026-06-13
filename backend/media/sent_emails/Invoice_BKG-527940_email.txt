@@ -1,0 +1,23 @@
+To: raju@gmail.com
+Subject: [AutoInspect] Payment Confirmed! Booking ID: BKG-527940
+--------------------------------------------------
+Dear raju raju,
+
+Thank you for your payment. Your booking has been successfully confirmed!
+
+Booking Details:
+-------------------------------------------
+Booking ID: BKG-527940
+Vehicle Details: Maruti
+Inspection Location: chennai - tambaram sanitorium
+Selected Package: Premium
+Payment Reference: pay_SwjuxooN9vGEAo
+Amount Paid: INR 2,999.00
+Inspection Status: Pending
+
+Please find your official secure invoice attached as a PDF to this email. Our certified inspection experts will coordinate with you shortly.
+
+If you have any questions, please contact our support team.
+
+Best regards,
+AutoInspect Network Team

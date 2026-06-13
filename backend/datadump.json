@@ -1,0 +1,1039 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$Voj8M7EGuuMjQSYqucBxOd$8v0RsE0C6VcNoxAxoCOnRpvlbvPQ6soDiOaOubUMu3I=",
+        "last_login": "2026-05-19T10:25:03.498Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@example.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-05-19T09:37:45.199Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$Xp2M0auEIJvZMCsbRnVvwB$z668eTYQGe2wwdwRnBadvI8l8e/mJjT/8LL6HmeuTlY=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "annamalai",
+        "first_name": "annamalai",
+        "last_name": "raja",
+        "email": "annamalairaja2002@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-20T04:47:13.314Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$cGorULEDNACB9ukiFLVDW9$5zEfRdhE7qigyh7UnGVvfHKJ1WLQZ0ldlM99QapTJj0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "annamalairaja",
+        "first_name": "annamalai",
+        "last_name": "raja",
+        "email": "annamalairaja2002@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-20T05:46:55.679Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$ksOkklI4YiwfDT5SdnFrHG$T8y7MCX3CKucj6CfKWUB2j8RcywIr4b6ITz0FeaK6pM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "sathish",
+        "first_name": "sathish",
+        "last_name": "kumar",
+        "email": "sathish@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-20T06:29:50.884Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$YT23hnXejGWGN6jMBqZZj5$94o3maVK3H5CtLM0+SOcxCqQhHNaozyP3FjLQJKLZ4A=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "surya",
+        "first_name": "surya",
+        "last_name": "",
+        "email": "surya@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-20T08:43:01.390Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$Po5nfNNGaJQfye4DDeOVRU$QqP51TCUMOw7mpTd5Eve3DMX+x554/Jx97AmwLBpfPc=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "mano",
+        "first_name": "mano",
+        "last_name": "har",
+        "email": "mano@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-20T11:58:00.035Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$Wjy9jQNsIYWq9dQIGCFBnI$dUfahnFQ9EAluNT2Rg5gQNRsYtWslJhYx5zlWwHNrqk=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "hakeem",
+        "first_name": "mohammed",
+        "last_name": "hakeem",
+        "email": "hakeem@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-20T13:24:06.730Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$j1QbRHHxPRQubsttnztp52$ZYGMf7B4DKnF9sPwQiYsYGeskxAkz3FKd5GdnKGyoRw=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "annamalai33",
+        "first_name": "annamalai",
+        "last_name": "raja",
+        "email": "annamalairaja2002@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-21T11:00:08.603Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$grpQt7BSMa7NrREjxOX9ML$6mwwuPFdsmv5jDesT4JeV2RjDspSh0Im2p7UMxz0I+s=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "john",
+        "first_name": "john",
+        "last_name": "deo",
+        "email": "john@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-05-22T04:07:52.658Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$peseP48eAVgg5kD93DYuqo$gA808ALT6KCIAX3kexB1cEm5RUCpZV4e1NJ4udiltYc=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "mano01",
+        "first_name": "mano",
+        "last_name": "mano",
+        "email": "mano@gmai.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-05-22T04:10:15.277Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "1q4zatsvkiv901w5r5qhsidsoq6phs4z",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2pCBUrAu3fcMzTDMSNVAUtqV8e7apAvd_vfef6kJtzVPW-NlmpO6KKNOv1tEenDZQbpjuVVNtazLHPWu6IM2PdbEz-vh_h1kbPlbW0CmAN5T8IgDWRMosbCAjxI7gXPfU-etWOEBI4YgwMaRA3TIAdX7AwhoORE:1wPHdH:8ma6afA9zQtfOtt7wyuwmARQCfbnlchIf0UyQYFle_U",
+        "expire_date": "2026-06-02T10:25:03.506Z"
+    }
+},
+{
+    "model": "authtoken.token",
+    "pk": "170710e3cee29966a022d515f3014361080d1c91",
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "created": "2026-05-20T04:14:29.453Z"
+    }
+},
+{
+    "model": "authtoken.token",
+    "pk": "7a4d60f972abaa248b5e0c42d0f1b0aa480651e2",
+    "fields": {
+        "user": [
+            "mano01"
+        ],
+        "created": "2026-05-22T04:10:17.837Z"
+    }
+},
+{
+    "model": "authtoken.token",
+    "pk": "7a9b957a9f27d8a43f7f87fdd46c12f85de4a83e",
+    "fields": {
+        "user": [
+            "annamalai"
+        ],
+        "created": "2026-05-20T04:47:16.022Z"
+    }
+},
+{
+    "model": "authtoken.token",
+    "pk": "7e079e5da0d65d470efbac7bd6e630ad0636f307",
+    "fields": {
+        "user": [
+            "sathish"
+        ],
+        "created": "2026-05-20T06:30:23.739Z"
+    }
+},
+{
+    "model": "authtoken.token",
+    "pk": "86c4bb9e4e6fdfd478f167646fd9380785390854",
+    "fields": {
+        "user": [
+            "hakeem"
+        ],
+        "created": "2026-05-20T13:24:09.117Z"
+    }
+},
+{
+    "model": "authtoken.token",
+    "pk": "b038a2ee99137bae7ec5d2c5afa0ce122207890a",
+    "fields": {
+        "user": [
+            "surya"
+        ],
+        "created": "2026-05-20T08:43:03.899Z"
+    }
+},
+{
+    "model": "authtoken.token",
+    "pk": "b592748280b037eea322cc8511c3d2fe99121f07",
+    "fields": {
+        "user": [
+            "annamalairaja"
+        ],
+        "created": "2026-05-20T05:46:57.068Z"
+    }
+},
+{
+    "model": "authtoken.token",
+    "pk": "c1d7a9ca2db90e57fff02e20402e1e84edc846ae",
+    "fields": {
+        "user": [
+            "mano"
+        ],
+        "created": "2026-05-20T11:58:02.437Z"
+    }
+},
+{
+    "model": "authtoken.token",
+    "pk": "db2d93ed4f00e54010244584096e076c2f951316",
+    "fields": {
+        "user": [
+            "annamalai33"
+        ],
+        "created": "2026-05-21T11:00:09.955Z"
+    }
+},
+{
+    "model": "authtoken.token",
+    "pk": "fb9acf22f3cb798d3499fb85339308754f0e7118",
+    "fields": {
+        "user": [
+            "john"
+        ],
+        "created": "2026-05-22T04:08:32.448Z"
+    }
+},
+{
+    "model": "bookings.userprofile",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "admin"
+        ],
+        "phone_number": null,
+        "city": null,
+        "area": null,
+        "pincode": null,
+        "latitude": null,
+        "longitude": null,
+        "role": "Admin"
+    }
+},
+{
+    "model": "bookings.userprofile",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "annamalai"
+        ],
+        "phone_number": "6380129612",
+        "city": "dubai",
+        "area": null,
+        "pincode": null,
+        "latitude": null,
+        "longitude": null,
+        "role": "User"
+    }
+},
+{
+    "model": "bookings.userprofile",
+    "pk": 3,
+    "fields": {
+        "user": [
+            "annamalairaja"
+        ],
+        "phone_number": "6380129612",
+        "city": "dubai",
+        "area": null,
+        "pincode": null,
+        "latitude": null,
+        "longitude": null,
+        "role": "User"
+    }
+},
+{
+    "model": "bookings.userprofile",
+    "pk": 4,
+    "fields": {
+        "user": [
+            "sathish"
+        ],
+        "phone_number": "9566816369",
+        "city": "abu dabi",
+        "area": null,
+        "pincode": null,
+        "latitude": null,
+        "longitude": null,
+        "role": "User"
+    }
+},
+{
+    "model": "bookings.userprofile",
+    "pk": 5,
+    "fields": {
+        "user": [
+            "surya"
+        ],
+        "phone_number": "",
+        "city": "",
+        "area": null,
+        "pincode": null,
+        "latitude": null,
+        "longitude": null,
+        "role": "User"
+    }
+},
+{
+    "model": "bookings.userprofile",
+    "pk": 6,
+    "fields": {
+        "user": [
+            "mano"
+        ],
+        "phone_number": "9566816369",
+        "city": "dubai",
+        "area": null,
+        "pincode": null,
+        "latitude": null,
+        "longitude": null,
+        "role": "User"
+    }
+},
+{
+    "model": "bookings.userprofile",
+    "pk": 7,
+    "fields": {
+        "user": [
+            "hakeem"
+        ],
+        "phone_number": "9566095602",
+        "city": "chennai",
+        "area": null,
+        "pincode": null,
+        "latitude": null,
+        "longitude": null,
+        "role": "User"
+    }
+},
+{
+    "model": "bookings.userprofile",
+    "pk": 12,
+    "fields": {
+        "user": [
+            "annamalai33"
+        ],
+        "phone_number": "9566816379",
+        "city": "chennai",
+        "area": null,
+        "pincode": null,
+        "latitude": null,
+        "longitude": null,
+        "role": "User"
+    }
+},
+{
+    "model": "bookings.userprofile",
+    "pk": 13,
+    "fields": {
+        "user": [
+            "john"
+        ],
+        "phone_number": "9566816369",
+        "city": "chennai",
+        "area": null,
+        "pincode": null,
+        "latitude": null,
+        "longitude": null,
+        "role": "Staff"
+    }
+},
+{
+    "model": "bookings.userprofile",
+    "pk": 14,
+    "fields": {
+        "user": [
+            "mano01"
+        ],
+        "phone_number": "9566816379",
+        "city": "chennai",
+        "area": null,
+        "pincode": null,
+        "latitude": null,
+        "longitude": null,
+        "role": "User"
+    }
+},
+{
+    "model": "bookings.booking",
+    "pk": 11,
+    "fields": {
+        "full_name": "mano mano",
+        "whatsapp_number": "9566816379",
+        "vehicle_model": "suzuki",
+        "city": "chennai",
+        "inspection_location": null,
+        "area": null,
+        "pincode": null,
+        "latitude": null,
+        "longitude": null,
+        "assigned_staff": null,
+        "package": "Standard",
+        "notes": "inspection completed",
+        "status": "Pending",
+        "created_at": "2026-05-22T04:10:53.693Z",
+        "updated_at": "2026-05-22T04:10:53.693Z"
+    }
+},
+{
+    "model": "bookings.inspectionreport",
+    "pk": "REP-405855",
+    "fields": {
+        "user": [
+            "annamalai33"
+        ],
+        "vehicle_model": "suzuki 001",
+        "year": 2020,
+        "grade": 90,
+        "package": "Premium",
+        "city": "Dubai",
+        "date": "2026-05-22",
+        "summary": "inspected",
+        "obd_status": "Clean",
+        "obd_codes": [],
+        "paint_status": "Original",
+        "paint_panels": [
+            {
+                "name": "Hood",
+                "value": 112,
+                "original": true
+            },
+            {
+                "name": "Front Bumper",
+                "value": 108,
+                "original": true
+            },
+            {
+                "name": "Left Fender",
+                "value": 115,
+                "original": true
+            },
+            {
+                "name": "Right Fender",
+                "value": 110,
+                "original": true
+            },
+            {
+                "name": "Left Door",
+                "value": 118,
+                "original": true
+            },
+            {
+                "name": "Right Door",
+                "value": 114,
+                "original": true
+            },
+            {
+                "name": "Roof",
+                "value": 105,
+                "original": true
+            },
+            {
+                "name": "Rear Hatch",
+                "value": 111,
+                "original": true
+            }
+        ],
+        "checks": [
+            {
+                "category": "Drivetrain & Engine",
+                "items": [
+                    {
+                        "name": "Engine oil level & quality",
+                        "status": "Normal",
+                        "desc": "Oil is fresh and at optimal fill level."
+                    },
+                    {
+                        "name": "Coolant system hold pressure",
+                        "status": "Normal",
+                        "desc": "No leaks in radiator, hoses, or expansion tank."
+                    }
+                ]
+            },
+            {
+                "category": "Chassis & Underbody",
+                "items": [
+                    {
+                        "name": "Frame rails & side members",
+                        "status": "Normal",
+                        "desc": "No structural damage or structural distortion detected."
+                    },
+                    {
+                        "name": "Underbody shields & floor pans",
+                        "status": "Normal",
+                        "desc": "Covers are fully secure. Floor pans are intact."
+                    }
+                ]
+            },
+            {
+                "category": "Cabin & Interior Checks",
+                "items": [
+                    {
+                        "name": "Seats & premium leather upholstery",
+                        "status": "Normal",
+                        "desc": "Upholstery is clean. Heating/cooling works perfectly."
+                    },
+                    {
+                        "name": "Seatbelts & tension anchors",
+                        "status": "Normal",
+                        "desc": "Anchors engage tightly. Retractor inertia locks function securely."
+                    }
+                ]
+            },
+            {
+                "category": "Brake System",
+                "items": [
+                    {
+                        "name": "Brake rotors & calipers",
+                        "status": "Normal",
+                        "desc": "Rotors show uniform wear without deep scoring."
+                    },
+                    {
+                        "name": "Brake pads thickness",
+                        "status": "Normal",
+                        "desc": "Pad thickness is well above safety wear indicators."
+                    }
+                ]
+            },
+            {
+                "category": "Electricals & Battery",
+                "items": [
+                    {
+                        "name": "Battery charge & cranking voltage",
+                        "status": "Normal",
+                        "desc": "Healthy cold cranking amps and stable open circuit voltage."
+                    },
+                    {
+                        "name": "Alternator charging output",
+                        "status": "Normal",
+                        "desc": "Charging voltage remains optimal under full electrical load."
+                    }
+                ]
+            },
+            {
+                "category": "Steering & Suspension",
+                "items": [
+                    {
+                        "name": "Steering rack & tie rods",
+                        "status": "Normal",
+                        "desc": "Steering feels direct and responsive. Boots are fully intact."
+                    },
+                    {
+                        "name": "Shock absorbers & struts",
+                        "status": "Normal",
+                        "desc": "No fluid dampening leaks, coils show no fractures."
+                    }
+                ]
+            },
+            {
+                "category": "Tyres & Wheels",
+                "items": [
+                    {
+                        "name": "Tread depth & wear pattern",
+                        "status": "Normal",
+                        "desc": "Uniform wear across all four tyres, healthy tread depth."
+                    },
+                    {
+                        "name": "Alloy wheel rims structural safety",
+                        "status": "Normal",
+                        "desc": "No structural fractures, curb rashes, or bends detected."
+                    }
+                ]
+            },
+            {
+                "category": "Exterior Body & Paint",
+                "items": [
+                    {
+                        "name": "Panel gaps alignment",
+                        "status": "Normal",
+                        "desc": "Panel alignments conform to factory dimensional specs."
+                    },
+                    {
+                        "name": "Cosmetic paint condition",
+                        "status": "Normal",
+                        "desc": "Uniform paint thickness, no major swirl marks or scratches."
+                    }
+                ]
+            },
+            {
+                "category": "Safety Systems",
+                "items": [
+                    {
+                        "name": "SRS Airbags readiness",
+                        "status": "Normal",
+                        "desc": "Airbag control module logs clean diagnostics with no fault codes."
+                    },
+                    {
+                        "name": "ABS & Traction Control",
+                        "status": "Normal",
+                        "desc": "Anti-lock brake actuators and wheel sensors are functional."
+                    }
+                ]
+            },
+            {
+                "category": "Air Conditioning & HVAC",
+                "items": [
+                    {
+                        "name": "Compressor engagement & cooling",
+                        "status": "Normal",
+                        "desc": "Compressor cycles quietly, vent temperature drops quickly."
+                    },
+                    {
+                        "name": "Cabin air filter & blower speed",
+                        "status": "Normal",
+                        "desc": "Optimal air throughput across all fan speed profiles."
+                    }
+                ]
+            },
+            {
+                "category": "Lighting & Indicators",
+                "items": [
+                    {
+                        "name": "Headlights & high beams",
+                        "status": "Normal",
+                        "desc": "LED clusters operate at full intensity and alignment."
+                    },
+                    {
+                        "name": "Tail lights & indicators",
+                        "status": "Normal",
+                        "desc": "Lenses are clear, indicators flash at normal frequency."
+                    }
+                ]
+            },
+            {
+                "category": "Transmission & Clutch",
+                "items": [
+                    {
+                        "name": "Gear engagement & synchro action",
+                        "status": "Normal",
+                        "desc": "Smooth shifts without gear clash or slip under throttle."
+                    },
+                    {
+                        "name": "Torque converter or clutch fluid",
+                        "status": "Normal",
+                        "desc": "Fluid level and condition conform to standard specs."
+                    }
+                ]
+            },
+            {
+                "category": "Road Test & Performance",
+                "items": [
+                    {
+                        "name": "Straight line tracking & stability",
+                        "status": "Normal",
+                        "desc": "Vehicle tracks straight, steering wheel is perfectly centered."
+                    },
+                    {
+                        "name": "NVH (Noise, Vibration, Harshness)",
+                        "status": "Normal",
+                        "desc": "Cabin remains quiet, free of abnormal mechanical vibrations."
+                    }
+                ]
+            }
+        ],
+        "technician_remarks": "insight",
+        "disclaimer": "This is an official secure document compiled by AutoInspect Network.",
+        "status": "Completed",
+        "pdf_file": "",
+        "video_link": null,
+        "car_make": "suzuki",
+        "registration_number": "k-3333",
+        "vin_number": "wpozzezz",
+        "odometer": "150000",
+        "fuel_type": "Petrol",
+        "transmission": "Automatic",
+        "variant": "GTe",
+        "engine_number": "eng",
+        "insurance_details": "axa",
+        "customer_address": "chennai",
+        "booking_id": "4390",
+        "technician_name": "alex",
+        "body_structural": "passed",
+        "accidental_history": "clean",
+        "engine_gearbox": "no active",
+        "water_logged": "passed",
+        "obd_errors": "zero",
+        "header_image": "http://localhost:8000/media/uploads/download%20(2)_KWZz1ji.jpg",
+        "images": [
+            "http://localhost:8000/media/uploads/download%20(4).jpg",
+            "http://localhost:8000/media/uploads/download%20(3).jpg",
+            "http://localhost:8000/media/uploads/download%20(2).jpg",
+            "http://localhost:8000/media/uploads/download%20(1).jpg"
+        ],
+        "created_at": "2026-05-22T04:56:55.441Z",
+        "updated_at": "2026-05-22T04:56:55.441Z"
+    }
+},
+{
+    "model": "bookings.inspectionreport",
+    "pk": "REP-662447",
+    "fields": {
+        "user": [
+            "annamalai33"
+        ],
+        "vehicle_model": "suzuki 001",
+        "year": 2020,
+        "grade": 90,
+        "package": "Premium",
+        "city": "Dubai",
+        "date": "2026-05-22",
+        "summary": "inspected",
+        "obd_status": "Clean",
+        "obd_codes": [],
+        "paint_status": "Original",
+        "paint_panels": [
+            {
+                "name": "Hood",
+                "value": 112,
+                "original": true
+            },
+            {
+                "name": "Front Bumper",
+                "value": 108,
+                "original": true
+            },
+            {
+                "name": "Left Fender",
+                "value": 115,
+                "original": true
+            },
+            {
+                "name": "Right Fender",
+                "value": 110,
+                "original": true
+            },
+            {
+                "name": "Left Door",
+                "value": 118,
+                "original": true
+            },
+            {
+                "name": "Right Door",
+                "value": 114,
+                "original": true
+            },
+            {
+                "name": "Roof",
+                "value": 105,
+                "original": true
+            },
+            {
+                "name": "Rear Hatch",
+                "value": 111,
+                "original": true
+            }
+        ],
+        "checks": [
+            {
+                "category": "Drivetrain & Engine",
+                "items": [
+                    {
+                        "name": "Engine oil level & quality",
+                        "status": "Normal",
+                        "desc": "Oil is fresh and at optimal fill level."
+                    },
+                    {
+                        "name": "Coolant system hold pressure",
+                        "status": "Normal",
+                        "desc": "No leaks in radiator, hoses, or expansion tank."
+                    }
+                ]
+            },
+            {
+                "category": "Chassis & Underbody",
+                "items": [
+                    {
+                        "name": "Frame rails & side members",
+                        "status": "Normal",
+                        "desc": "No structural damage or structural distortion detected."
+                    },
+                    {
+                        "name": "Underbody shields & floor pans",
+                        "status": "Normal",
+                        "desc": "Covers are fully secure. Floor pans are intact."
+                    }
+                ]
+            },
+            {
+                "category": "Cabin & Interior Checks",
+                "items": [
+                    {
+                        "name": "Seats & premium leather upholstery",
+                        "status": "Normal",
+                        "desc": "Upholstery is clean. Heating/cooling works perfectly."
+                    },
+                    {
+                        "name": "Seatbelts & tension anchors",
+                        "status": "Normal",
+                        "desc": "Anchors engage tightly. Retractor inertia locks function securely."
+                    }
+                ]
+            },
+            {
+                "category": "Brake System",
+                "items": [
+                    {
+                        "name": "Brake rotors & calipers",
+                        "status": "Normal",
+                        "desc": "Rotors show uniform wear without deep scoring."
+                    },
+                    {
+                        "name": "Brake pads thickness",
+                        "status": "Normal",
+                        "desc": "Pad thickness is well above safety wear indicators."
+                    }
+                ]
+            },
+            {
+                "category": "Electricals & Battery",
+                "items": [
+                    {
+                        "name": "Battery charge & cranking voltage",
+                        "status": "Normal",
+                        "desc": "Healthy cold cranking amps and stable open circuit voltage."
+                    },
+                    {
+                        "name": "Alternator charging output",
+                        "status": "Normal",
+                        "desc": "Charging voltage remains optimal under full electrical load."
+                    }
+                ]
+            },
+            {
+                "category": "Steering & Suspension",
+                "items": [
+                    {
+                        "name": "Steering rack & tie rods",
+                        "status": "Normal",
+                        "desc": "Steering feels direct and responsive. Boots are fully intact."
+                    },
+                    {
+                        "name": "Shock absorbers & struts",
+                        "status": "Normal",
+                        "desc": "No fluid dampening leaks, coils show no fractures."
+                    }
+                ]
+            },
+            {
+                "category": "Tyres & Wheels",
+                "items": [
+                    {
+                        "name": "Tread depth & wear pattern",
+                        "status": "Normal",
+                        "desc": "Uniform wear across all four tyres, healthy tread depth."
+                    },
+                    {
+                        "name": "Alloy wheel rims structural safety",
+                        "status": "Normal",
+                        "desc": "No structural fractures, curb rashes, or bends detected."
+                    }
+                ]
+            },
+            {
+                "category": "Exterior Body & Paint",
+                "items": [
+                    {
+                        "name": "Panel gaps alignment",
+                        "status": "Normal",
+                        "desc": "Panel alignments conform to factory dimensional specs."
+                    },
+                    {
+                        "name": "Cosmetic paint condition",
+                        "status": "Normal",
+                        "desc": "Uniform paint thickness, no major swirl marks or scratches."
+                    }
+                ]
+            },
+            {
+                "category": "Safety Systems",
+                "items": [
+                    {
+                        "name": "SRS Airbags readiness",
+                        "status": "Normal",
+                        "desc": "Airbag control module logs clean diagnostics with no fault codes."
+                    },
+                    {
+                        "name": "ABS & Traction Control",
+                        "status": "Normal",
+                        "desc": "Anti-lock brake actuators and wheel sensors are functional."
+                    }
+                ]
+            },
+            {
+                "category": "Air Conditioning & HVAC",
+                "items": [
+                    {
+                        "name": "Compressor engagement & cooling",
+                        "status": "Normal",
+                        "desc": "Compressor cycles quietly, vent temperature drops quickly."
+                    },
+                    {
+                        "name": "Cabin air filter & blower speed",
+                        "status": "Normal",
+                        "desc": "Optimal air throughput across all fan speed profiles."
+                    }
+                ]
+            },
+            {
+                "category": "Lighting & Indicators",
+                "items": [
+                    {
+                        "name": "Headlights & high beams",
+                        "status": "Normal",
+                        "desc": "LED clusters operate at full intensity and alignment."
+                    },
+                    {
+                        "name": "Tail lights & indicators",
+                        "status": "Normal",
+                        "desc": "Lenses are clear, indicators flash at normal frequency."
+                    }
+                ]
+            },
+            {
+                "category": "Transmission & Clutch",
+                "items": [
+                    {
+                        "name": "Gear engagement & synchro action",
+                        "status": "Normal",
+                        "desc": "Smooth shifts without gear clash or slip under throttle."
+                    },
+                    {
+                        "name": "Torque converter or clutch fluid",
+                        "status": "Normal",
+                        "desc": "Fluid level and condition conform to standard specs."
+                    }
+                ]
+            },
+            {
+                "category": "Road Test & Performance",
+                "items": [
+                    {
+                        "name": "Straight line tracking & stability",
+                        "status": "Normal",
+                        "desc": "Vehicle tracks straight, steering wheel is perfectly centered."
+                    },
+                    {
+                        "name": "NVH (Noise, Vibration, Harshness)",
+                        "status": "Normal",
+                        "desc": "Cabin remains quiet, free of abnormal mechanical vibrations."
+                    }
+                ]
+            }
+        ],
+        "technician_remarks": "integrity",
+        "disclaimer": "This is an official secure document compiled by AutoInspect Network.",
+        "status": "Completed",
+        "pdf_file": "",
+        "video_link": null,
+        "car_make": "suzuki",
+        "registration_number": "k-3333",
+        "vin_number": "wpozzeez",
+        "odometer": "15000km",
+        "fuel_type": "Diesel",
+        "transmission": "Automatic",
+        "variant": "gts",
+        "engine_number": "eng",
+        "insurance_details": "axa",
+        "customer_address": "marina",
+        "booking_id": "b-543",
+        "technician_name": "alex",
+        "body_structural": "passed",
+        "accidental_history": "clean",
+        "engine_gearbox": "no active",
+        "water_logged": "passed",
+        "obd_errors": "zero",
+        "header_image": "http://localhost:8000/media/uploads/download%20(2)_M7ueiWb.jpg",
+        "images": [
+            "http://localhost:8000/media/uploads/download%20(4)_PHmn2zD.jpg",
+            "http://localhost:8000/media/uploads/download%20(3)_ns2yBHL.jpg",
+            "http://localhost:8000/media/uploads/download%20(2)_4Lwxy4d.jpg",
+            "http://localhost:8000/media/uploads/download%20(1)_dzloQi3.jpg"
+        ],
+        "created_at": "2026-05-22T04:35:34.861Z",
+        "updated_at": "2026-05-22T04:35:34.861Z"
+    }
+}
+]
