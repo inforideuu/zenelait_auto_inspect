@@ -10,8 +10,7 @@ from .views import (
     FileUploadView,
     StaffListView,
     NotificationViewSet,
-    RazorpayOrderView,
-    VerifyPaymentView,
+    ConfirmBookingView,
     InvoiceDownloadView,
     RevenueStatsView
 )
@@ -32,8 +31,7 @@ urlpatterns = [
     path('auth/staff', StaffListView.as_view(), name='auth-staff'),
     
     # Payments Routing
-    path('payments/create-order', RazorpayOrderView.as_view(), name='payment-create-order'),
-    path('payments/verify-payment', VerifyPaymentView.as_view(), name='payment-verify-payment'),
+    path('payments/confirm-booking', ConfirmBookingView.as_view(), name='payment-confirm-booking'),
     path('payments/download-invoice/<str:booking_id>', InvoiceDownloadView.as_view(), name='payment-download-invoice'),
     path('payments/revenue-stats', RevenueStatsView.as_view(), name='payment-revenue-stats'),
 ]

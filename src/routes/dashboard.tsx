@@ -44,6 +44,7 @@ export const Route = createFileRoute("/dashboard")({
 
 interface Booking {
   id: number;
+  booking_id?: string | null;
   full_name: string;
   whatsapp_number: string;
   vehicle_model: string;
@@ -3410,15 +3411,7 @@ function DashboardPage() {
                 Staff Accounts
               </button>
             )}
-            {role === "admin" && (
-              <button
-                onClick={() => setAdminTab("revenue")}
-                className={`pb-2 px-3 text-sm font-semibold transition cursor-pointer border-b-2 ${adminTab === "revenue" ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"
-                  }`}
-              >
-                Revenue & Payments
-              </button>
-            )}
+
           </div>
 
           {/* Tab Content: Bookings */}
@@ -4084,147 +4077,7 @@ function DashboardPage() {
             </div>
           )}
 
-          {adminTab === "revenue" && role === "admin" && (
-            <div className="space-y-6 text-left">
-              {/* Stat Cards Container */}
-              <div className="grid gap-4 md:grid-cols-3">
-                <div className="glass-card rounded-3xl p-6 border text-left flex flex-col justify-between min-h-[140px] bg-gradient-to-br from-card to-emerald-500/5 relative overflow-hidden group shadow-lg border-border/40">
-                  <div className="absolute -top-10 -right-10 w-24 h-24 rounded-full bg-emerald-500/10 blur-xl group-hover:bg-emerald-500/20 transition duration-300" />
-                  <span className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider block">Gross Revenue</span>
-                  <div className="mt-4">
-                    <span className="text-3xl font-extrabold text-foreground tracking-tight flex items-baseline">
-                      <span className="text-emerald-500 mr-1.5 font-bold text-2xl">₹</span>
-                      {revenueStats?.total_revenue ? revenueStats.total_revenue.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "0.00"}
-                    </span>
-                    <p className="text-[11px] text-muted-foreground mt-2">Total payments captured securely via Razorpay</p>
-                  </div>
-                </div>
 
-                <div className="glass-card rounded-3xl p-6 border text-left flex flex-col justify-between min-h-[140px] bg-gradient-to-br from-card to-primary/5 relative overflow-hidden group shadow-lg border-border/40">
-                  <div className="absolute -top-10 -right-10 w-24 h-24 rounded-full bg-primary/10 blur-xl group-hover:bg-primary/20 transition duration-300" />
-                  <span className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider block">Total Transactions</span>
-                  <div className="mt-4">
-                    <span className="text-3xl font-extrabold text-foreground tracking-tight">
-                      {revenueStats?.total_transactions || 0}
-                    </span>
-                    <p className="text-[11px] text-muted-foreground mt-2">Successful checkouts processed & verified</p>
-                  </div>
-                </div>
-
-                <div className="glass-card rounded-3xl p-6 border text-left flex flex-col justify-between min-h-[140px] bg-gradient-to-br from-card to-indigo-500/5 relative overflow-hidden group shadow-lg border-border/40">
-                  <div className="absolute -top-10 -right-10 w-24 h-24 rounded-full bg-indigo-500/10 blur-xl group-hover:bg-indigo-500/20 transition duration-300" />
-                  <span className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider block">Average Order Value</span>
-                  <div className="mt-4">
-                    <span className="text-3xl font-extrabold text-foreground tracking-tight flex items-baseline">
-                      <span className="text-indigo-400 mr-1.5 font-bold text-2xl">₹</span>
-                      {revenueStats?.average_order_value ? revenueStats.average_order_value.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "0.00"}
-                    </span>
-                    <p className="text-[11px] text-muted-foreground mt-2">Average gross value per booked inspection</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Package Distribution Metrics */}
-              {revenueStats?.package_distribution && revenueStats.package_distribution.length > 0 && (
-                <div className="glass-card rounded-3xl p-6 border text-left space-y-4 border-border/40">
-                  <span className="text-xs uppercase tracking-widest text-muted-foreground font-semibold flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 text-primary" /> Package Metrics & Popularity
-                  </span>
-                  <div className="grid gap-3 grid-cols-2 md:grid-cols-4">
-                    {(() => {
-                      const totalCount = revenueStats.package_distribution.reduce((acc: number, p: any) => acc + p.count, 0) || 1;
-                      return revenueStats.package_distribution.map((dist: any) => {
-                        const percent = Math.round((dist.count / totalCount) * 100);
-                        return (
-                          <div key={dist.package} className="p-4 rounded-2xl border border-border bg-background/30 flex flex-col justify-between min-h-[100px] hover:border-primary/45 transition">
-                            <div>
-                              <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">{dist.package}</span>
-                              <span className="text-xl font-bold block mt-1.5 text-foreground">{dist.count} Bookings</span>
-                            </div>
-                            <div className="w-full bg-secondary/15 h-1.5 rounded-full mt-3.5 overflow-hidden">
-                              <div className="bg-primary h-full rounded-full transition-all duration-500" style={{ width: `${percent}%` }} />
-                            </div>
-                            <span className="text-[10px] text-muted-foreground mt-1.5 block font-semibold text-right">{percent}% share</span>
-                          </div>
-                        );
-                      });
-                    })()}
-                  </div>
-                </div>
-              )}
-
-              {/* Recent Payments Ledger */}
-              <div className="glass-card rounded-3xl overflow-hidden shadow-2xl border border-border/40">
-                <div className="p-5 border-b border-border/40 bg-secondary/10 flex items-center justify-between">
-                  <div>
-                    <h4 className="font-bold text-foreground text-sm">Secure Payment History Ledger</h4>
-                    <p className="text-xs text-muted-foreground mt-0.5">Real-time audit log of all financial transactions verified by AutoInspect cryptographic signatures.</p>
-                  </div>
-                  <button
-                    onClick={() => setRefreshCount(c => c + 1)}
-                    className="p-2.5 rounded-xl border border-border bg-background/30 hover:bg-secondary text-foreground transition cursor-pointer"
-                    title="Synchronize Payment History"
-                  >
-                    <RefreshCw className="h-4 w-4" />
-                  </button>
-                </div>
-                {!revenueStats?.recent_payments || revenueStats.recent_payments.length === 0 ? (
-                  <div className="py-16 text-center text-muted-foreground text-sm">
-                    No transaction history logged yet.
-                  </div>
-                ) : (
-                  <div className="overflow-x-auto">
-                    <table className="w-full border-collapse text-left text-xs sm:text-sm">
-                      <thead>
-                        <tr className="border-b border-border/40 bg-secondary/15 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                          <th className="px-6 py-4">Transaction Date</th>
-                          <th className="px-6 py-4">Booking Ref</th>
-                          <th className="px-6 py-4">Customer Details</th>
-                          <th className="px-6 py-4">Razorpay Reference IDs</th>
-                          <th className="px-6 py-4">Total Amount</th>
-                          <th className="px-6 py-4 text-right">Payment Status</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-border/30">
-                        {revenueStats.recent_payments.map((p: any) => (
-                          <tr key={p.id} className="hover:bg-secondary/10 transition">
-                            <td className="px-6 py-4 whitespace-nowrap text-muted-foreground text-xs font-mono">
-                              {p.transaction_date ? new Date(p.transaction_date).toLocaleString('en-IN', { hourCycle: 'h23', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : "N/A"}
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap font-mono text-xs text-primary font-bold">
-                              {p.booking_id || "N/A"}
-                            </td>
-                            <td className="px-6 py-4">
-                              <p className="font-semibold text-foreground text-xs sm:text-sm">{p.customer_name || "Anonymous Customer"}</p>
-                            </td>
-                            <td className="px-6 py-4 space-y-0.5 text-[10px] text-muted-foreground font-mono">
-                              <p><span className="font-bold text-foreground/75">Order:</span> {p.razorpay_order_id || "N/A"}</p>
-                              {p.razorpay_payment_id && <p><span className="font-bold text-foreground/75">Pay ID:</span> {p.razorpay_payment_id}</p>}
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap font-bold text-foreground text-xs sm:text-sm">
-                              {p.currency || "INR"} {p.amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-right">
-                              <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase border ${
-                                p.payment_status === "Paid"
-                                  ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
-                                  : p.payment_status === "Pending"
-                                    ? "bg-amber-500/10 text-amber-500 border-amber-500/20 animate-pulse"
-                                    : "bg-rose-500/10 text-rose-500 border-rose-500/20"
-                              }`}>
-                                {p.payment_status === "Paid" ? <CheckCircle2 className="h-3 w-3" /> : null}
-                                {p.payment_status}
-                              </span>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
 
         </section>
       </>

@@ -15,19 +15,6 @@ export const Route = createFileRoute("/contact")({
   }),
 });
 
-const loadRazorpayScript = () => {
-  return new Promise((resolve) => {
-    if (typeof window !== "undefined" && (window as any).Razorpay) {
-      resolve(true);
-      return;
-    }
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
-    document.body.appendChild(script);
-  });
-};
 
 function ContactPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -47,7 +34,7 @@ function ContactPage() {
   const [sent, setSent] = useState(false);
   const [isJoining, setIsJoining] = useState(false);
 
-  // Razorpay Payment States
+  // Payment Success/Failure States
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [paymentFailed, setPaymentFailed] = useState(false);
   const [createdBookingId, setCreatedBookingId] = useState("");
@@ -163,110 +150,50 @@ function ContactPage() {
         amount = 2999;
       }
 
-      // Step 1: Initiate Razorpay Order on Backend
-      fetch("http://localhost:8000/api/payments/create-order", {
+      // Directly create booking on the backend
+      fetch("http://localhost:8000/api/payments/confirm-booking", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Token ${localStorage.getItem("autoinspect_token") || ""}`
         },
-        body: JSON.stringify({ amount: amount, currency: "INR" })
-      })
-        .then(async (orderRes) => {
-          if (!orderRes.ok) {
-            const errData = await orderRes.json();
-            throw new Error(errData.detail || "Failed to initiate payment transaction.");
+        body: JSON.stringify({
+          email: email,
+          booking_details: {
+            full_name: fullName,
+            whatsapp_number: whatsappNumber,
+            vehicle_model: vehicleModel,
+            city: city,
+            inspection_location: inspectionLocation || null,
+            area: area || null,
+            pincode: pincode || null,
+            latitude: latitude ? parseFloat(latitude) : null,
+            longitude: longitude ? parseFloat(longitude) : null,
+            package: cleanPackage,
+            notes: notes || null,
+            amount: amount,
+            currency: "INR"
           }
-          return orderRes.json();
         })
-        .then(async (orderData) => {
-          // Step 2: Load Razorpay Script
-          const scriptLoaded = await loadRazorpayScript();
-          if (!scriptLoaded) {
-            throw new Error("Razorpay SDK failed to load. Please verify your connection.");
+      })
+        .then(async (res) => {
+          if (!res.ok) {
+            const errData = await res.json();
+            throw new Error(errData.detail || "Failed to confirm booking.");
           }
-
-          // Step 3: Trigger Razorpay Popup
-          const options = {
-            key: orderData.razorpay_key_id,
-            amount: orderData.amount,
-            currency: orderData.currency,
-            name: "AutoInspect Network",
-            description: `Certified ${cleanPackage} Vehicle Inspection`,
-            order_id: orderData.order_id,
-            handler: function (response: any) {
-              setSubmitting(true);
-              // Step 4: Verify Payment Signature & Create Booking
-              fetch("http://localhost:8000/api/payments/verify-payment", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                  "Authorization": `Token ${localStorage.getItem("autoinspect_token") || ""}`
-                },
-                body: JSON.stringify({
-                  razorpay_payment_id: response.razorpay_payment_id,
-                  razorpay_order_id: response.razorpay_order_id,
-                  razorpay_signature: response.razorpay_signature,
-                  email: email,
-                  booking_details: {
-                    full_name: fullName,
-                    whatsapp_number: whatsappNumber,
-                    vehicle_model: vehicleModel,
-                    city: city,
-                    inspection_location: inspectionLocation || null,
-                    area: area || null,
-                    pincode: pincode || null,
-                    latitude: latitude ? parseFloat(latitude) : null,
-                    longitude: longitude ? parseFloat(longitude) : null,
-                    package: cleanPackage,
-                    notes: notes || null,
-                    amount: amount,
-                    currency: "INR"
-                  }
-                })
-              })
-                .then(async (verifyRes) => {
-                  if (!verifyRes.ok) {
-                    const verifyErr = await verifyRes.json();
-                    throw new Error(verifyErr.detail || "Secure payment verification failed.");
-                  }
-                  return verifyRes.json();
-                })
-                .then((verifyData) => {
-                  setCreatedBookingId(verifyData.booking_id);
-                  setPaymentSuccess(true);
-                  setSent(true);
-                  toast.success("Inspection Booked & Paid Successfully!");
-                  setSubmitting(false);
-                })
-                .catch((verifyErr: any) => {
-                  setErrorMessage(verifyErr.message || "Payment verification failed.");
-                  setPaymentFailed(true);
-                  toast.error(verifyErr.message || "Payment verification failed.");
-                  setSubmitting(false);
-                });
-            },
-            prefill: {
-              name: fullName,
-              contact: whatsappNumber,
-              email: email
-            },
-            theme: {
-              color: "#E11D48" // Rose 600 primary color
-            },
-            modal: {
-              ondismiss: function () {
-                setSubmitting(false);
-                toast.warning("Payment checkout popup closed.");
-              }
-            }
-          };
-
-          const rzp = new (window as any).Razorpay(options);
-          rzp.open();
+          return res.json();
+        })
+        .then((data) => {
+          setCreatedBookingId(data.booking_id);
+          setPaymentSuccess(true);
+          setSent(true);
+          toast.success("Inspection Booked & Confirmed Successfully!");
+          setSubmitting(false);
         })
         .catch((err: any) => {
-          toast.error(err.message || "Checkout initialization error.");
+          setErrorMessage(err.message || "Booking creation failed.");
+          setPaymentFailed(true);
+          toast.error(err.message || "Booking creation failed.");
           setSubmitting(false);
         });
     });

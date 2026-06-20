@@ -29,8 +29,8 @@ class Payment(models.Model):
 
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='payments', verbose_name="Customer")
     booking_id = models.CharField(max_length=100, blank=True, null=True, verbose_name="Booking ID")
-    razorpay_order_id = models.CharField(max_length=255, unique=True, verbose_name="Razorpay Order ID")
-    razorpay_payment_id = models.CharField(max_length=255, blank=True, null=True, verbose_name="Razorpay Payment ID")
+    gateway_order_id = models.CharField(max_length=255, blank=True, null=True, unique=True, verbose_name="Gateway Order ID")
+    gateway_payment_id = models.CharField(max_length=255, blank=True, null=True, verbose_name="Gateway Payment ID")
     amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Amount")
     currency = models.CharField(max_length=10, default='INR', verbose_name="Currency")
     payment_status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Pending', verbose_name="Payment Status")
@@ -42,7 +42,7 @@ class Payment(models.Model):
         verbose_name_plural = "Payments"
 
     def __str__(self):
-        return f"{self.customer.username} - {self.razorpay_order_id} ({self.payment_status})"
+        return f"{self.customer.username} - {self.gateway_order_id or 'N/A'} ({self.payment_status})"
 
 
 class Booking(models.Model):

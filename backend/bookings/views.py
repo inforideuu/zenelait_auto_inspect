@@ -8,6 +8,8 @@ from rest_framework.parsers import MultiPartParser, FormParser
 
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.conf import settings
+from django.core.mail import EmailMessage
 from io import BytesIO
 from xhtml2pdf import pisa
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
@@ -1577,98 +1579,25 @@ class FileUploadView(APIView):
         }, status=status.HTTP_201_CREATED)
 
 
-import razorpay
-from django.conf import settings
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-from django.core.mail import EmailMessage
-from django.http import HttpResponse
+import uuid
 
-class RazorpayOrderView(APIView):
+class ConfirmBookingView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        amount = request.data.get('amount')
-        currency = request.data.get('currency', 'INR')
-
-        if not amount:
-            return Response({"detail": "Amount is required."}, status=status.HTTP_400_BAD_REQUEST)
-
-        # Convert to paisa (razorpay expects integer in smallest currency unit)
-        try:
-            amount_in_paisa = int(float(amount) * 100)
-        except ValueError:
-            return Response({"detail": "Invalid amount format."}, status=status.HTTP_400_BAD_REQUEST)
-
-        try:
-            client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
-            razorpay_order = client.order.create({
-                "amount": amount_in_paisa,
-                "currency": currency,
-                "payment_capture": "1"  # capture immediately
-            })
-
-            # Save a pending payment transaction
-            Payment.objects.create(
-                customer=request.user,
-                razorpay_order_id=razorpay_order['id'],
-                amount=float(amount),
-                currency=currency,
-                payment_status='Pending'
-            )
-
-            return Response({
-                "order_id": razorpay_order['id'],
-                "amount": razorpay_order['amount'],
-                "currency": razorpay_order['currency'],
-                "razorpay_key_id": settings.RAZORPAY_KEY_ID
-            }, status=status.HTTP_201_CREATED)
-        except Exception as e:
-            return Response({"detail": f"Error creating Razorpay order: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
-class VerifyPaymentView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def post(self, request):
-        razorpay_payment_id = request.data.get('razorpay_payment_id')
-        razorpay_order_id = request.data.get('razorpay_order_id')
-        razorpay_signature = request.data.get('razorpay_signature')
         booking_details = request.data.get('booking_details', {})
+        gateway_payment_id = request.data.get('gateway_payment_id') or f"txn_{uuid.uuid4().hex[:12]}"
+        gateway_order_id = request.data.get('gateway_order_id') or f"ref_{uuid.uuid4().hex[:12]}"
 
-        if not razorpay_payment_id or not razorpay_order_id or not razorpay_signature:
-            return Response({"detail": "Payment confirmation details are missing."}, status=status.HTTP_400_BAD_REQUEST)
-
-        # 1. Secure Signature Verification
-        try:
-            client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
-            params_dict = {
-                'razorpay_order_id': razorpay_order_id,
-                'razorpay_payment_id': razorpay_payment_id,
-                'razorpay_signature': razorpay_signature
-            }
-            client.utility.verify_payment_signature(params_dict)
-        except razorpay.errors.SignatureVerificationError:
-            # Log failure and block
-            return Response({"detail": "Secure Signature Verification Failed."}, status=status.HTTP_400_BAD_REQUEST)
-        except Exception as e:
-            return Response({"detail": f"Verification error: {str(str(e))}"}, status=status.HTTP_400_BAD_REQUEST)
-
-        # 2. Save Payment Transaction
-        try:
-            payment = Payment.objects.get(razorpay_order_id=razorpay_order_id)
-            payment.razorpay_payment_id = razorpay_payment_id
-            payment.payment_status = 'Paid'
-            payment.save()
-        except Payment.DoesNotExist:
-            payment = Payment.objects.create(
-                customer=request.user,
-                razorpay_order_id=razorpay_order_id,
-                razorpay_payment_id=razorpay_payment_id,
-                amount=float(booking_details.get('amount', 1799.00)),
-                currency=booking_details.get('currency', 'INR'),
-                payment_status='Paid'
-            )
+        # 1. Save Payment Transaction
+        payment = Payment.objects.create(
+            customer=request.user,
+            gateway_order_id=gateway_order_id,
+            gateway_payment_id=gateway_payment_id,
+            amount=float(booking_details.get('amount', 1799.00)),
+            currency=booking_details.get('currency', 'INR'),
+            payment_status='Paid'
+        )
 
         # 3. Create Inspection Booking automatically
         try:
@@ -1713,7 +1642,7 @@ Booking ID: {booking.booking_id}
 Vehicle Details: {booking.vehicle_model}
 Inspection Location: {booking.city} - {booking.inspection_location or ''}
 Selected Package: {booking.package}
-Payment Reference: {payment.razorpay_payment_id}
+Payment Reference: {payment.gateway_payment_id}
 Amount Paid: {payment.currency} {payment.amount:,.2f}
 Inspection Status: Pending
 
@@ -1787,8 +1716,8 @@ AutoInspect Network Team
         package = booking.package
         amount = payment.amount
         currency = payment.currency
-        order_id = payment.razorpay_order_id
-        payment_id = payment.razorpay_payment_id or 'N/A'
+        order_id = payment.gateway_order_id or 'N/A'
+        payment_id = payment.gateway_payment_id or 'N/A'
         date_str = payment.transaction_date.strftime('%B %d, %Y') if hasattr(payment.transaction_date, 'strftime') else timezone.now().strftime('%B %d, %Y')
         booking_id = booking.booking_id
         
@@ -1915,8 +1844,8 @@ AutoInspect Network Team
                         <div class="section-title" style="text-align: right;">Invoice Info</div>
                         <strong>Invoice Number:</strong> {booking_id}<br>
                         <strong>Date:</strong> {date_str}<br>
-                        <strong>Order ID:</strong> {order_id}<br>
-                        <strong>Payment ID:</strong> {payment_id}
+                        <strong>Reference ID:</strong> {order_id}<br>
+                        <strong>Transaction ID:</strong> {payment_id}
                     </td>
                 </tr>
             </table>
@@ -2014,7 +1943,7 @@ class InvoiceDownloadView(APIView):
         if not payment:
             return Response({"detail": "No payment record found for this booking."}, status=status.HTTP_400_BAD_REQUEST)
 
-        view_instance = VerifyPaymentView()
+        view_instance = ConfirmBookingView()
         pdf_bytes = view_instance._generate_invoice_pdf_bytes(booking, payment)
 
         if not pdf_bytes:
