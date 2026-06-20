@@ -77,7 +77,6 @@ ASGI_APPLICATION = 'config.asgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 import dj_database_url
 
 DATABASE_URL = os.environ.get(
@@ -86,13 +85,8 @@ DATABASE_URL = os.environ.get(
 )
 
 db_config = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
-if db_config and 'sqlite' in db_config.get('ENGINE', ''):
-    # Standard SQLite configuration
-    pass
-else:
-    # Ensure MySQL engine is used
-    if db_config:
-        db_config['ENGINE'] = 'django.db.backends.mysql'
+if db_config:
+    db_config['ENGINE'] = 'django.db.backends.mysql'
 
 DATABASES = {
     'default': db_config
