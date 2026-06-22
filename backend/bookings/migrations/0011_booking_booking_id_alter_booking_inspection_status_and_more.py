@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='booking',
             name='booking_id',
-            field=models.CharField(blank=True, max_length=50, null=True, unique=True, verbose_name='Booking ID'),
+            field=models.CharField(blank=True, max_length=50, null=True, unique=False, verbose_name='Booking ID'),
         ),
         migrations.AlterField(
             model_name='booking',
