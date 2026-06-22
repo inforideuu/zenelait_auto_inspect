@@ -184,10 +184,11 @@ DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
 
 
 # TiDB Cloud DDL Compatibility Hook
-# Disable combined alters globally on the MySQL features class so columns are created before foreign keys
+# Disable combined alters and foreign key constraints globally for TiDB Cloud compatibility
 try:
     from django.db.backends.mysql.features import DatabaseFeatures
     DatabaseFeatures.supports_combined_alters = False
+    DatabaseFeatures.supports_foreign_keys = False
 except ImportError:
     pass
 
