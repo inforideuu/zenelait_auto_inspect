@@ -93,6 +93,8 @@ if db_config:
         if 'tidbcloud.com' in DATABASE_URL or 'ssl-mode' in DATABASE_URL:
             db_config['OPTIONS'] = db_config.get('OPTIONS', {})
             db_config['OPTIONS']['ssl'] = {}
+            # Remove 'ssl-mode' so PyMySQL connection doesn't throw unexpected keyword argument error
+            db_config['OPTIONS'].pop('ssl-mode', None)
     # Otherwise, let dj_database_url automatically configure the engine (sqlite, postgres, etc.)
 
 DATABASES = {
