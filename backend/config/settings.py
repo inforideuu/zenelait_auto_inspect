@@ -89,6 +89,10 @@ db_config = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
 if db_config:
     if DATABASE_URL.startswith('mysql://'):
         db_config['ENGINE'] = 'django.db.backends.mysql'
+        # TiDB Cloud requires SSL/TLS. Enable it for PyMySQL.
+        if 'tidbcloud.com' in DATABASE_URL or 'ssl-mode' in DATABASE_URL:
+            db_config['OPTIONS'] = db_config.get('OPTIONS', {})
+            db_config['OPTIONS']['ssl'] = {}
     # Otherwise, let dj_database_url automatically configure the engine (sqlite, postgres, etc.)
 
 DATABASES = {
