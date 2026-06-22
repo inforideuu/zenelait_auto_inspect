@@ -183,3 +183,15 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '') # Gmail App Pass
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
 
 
+# TiDB Cloud DDL Compatibility Hook
+from django.db.backends.signals import connection_created
+from django.dispatch import receiver
+
+@receiver(connection_created)
+def configure_tidb_connection(sender, connection, **kwargs):
+    if connection.vendor == 'mysql':
+        # Disable combined alters so TiDB creates columns before foreign keys
+        connection.features.supports_combined_alters = False
+
+
+
