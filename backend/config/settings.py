@@ -87,7 +87,9 @@ DATABASE_URL = os.environ.get(
 
 db_config = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
 if db_config:
-    db_config['ENGINE'] = 'django.db.backends.mysql'
+    if DATABASE_URL.startswith('mysql://'):
+        db_config['ENGINE'] = 'django.db.backends.mysql'
+    # Otherwise, let dj_database_url automatically configure the engine (sqlite, postgres, etc.)
 
 DATABASES = {
     'default': db_config
