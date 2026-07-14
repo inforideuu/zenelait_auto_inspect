@@ -4129,7 +4129,7 @@ function DashboardPage() {
                     <th className="px-5 py-3">Booking ID</th>
                     <th className="px-5 py-3">Vehicle Details</th>
                     <th className="px-5 py-3">Package</th>
-                    <th className="px-5 py-3">Payment Status</th>
+                    {/* <th className="px-5 py-3">Payment Status</th> */}
                     <th className="px-5 py-3">Inspection Status</th>
                   </tr>
                 </thead>
@@ -4141,11 +4141,11 @@ function DashboardPage() {
                       </td>
                       <td className="px-5 py-4 font-medium text-foreground">{b.vehicle_model}</td>
                       <td className="px-5 py-4 text-muted-foreground">{b.package}</td>
-                      <td className="px-5 py-4">
+                      {/* <td className="px-5 py-4">
                         <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
                           <CheckCircle2 className="h-3 w-3" /> Paid
                         </span>
-                      </td>
+                      </td> */}
                       <td className="px-5 py-4">
                         <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold ${
                           b.inspection_status === "Report Generated" || b.status === "Completed"
