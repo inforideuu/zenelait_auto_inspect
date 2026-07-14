@@ -4131,7 +4131,6 @@ function DashboardPage() {
                     <th className="px-5 py-3">Package</th>
                     <th className="px-5 py-3">Payment Status</th>
                     <th className="px-5 py-3">Inspection Status</th>
-                    <th className="px-5 py-3 text-right">Invoice</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/20">
@@ -4155,16 +4154,6 @@ function DashboardPage() {
                         }`}>
                           {b.inspection_status || "Pending"}
                         </span>
-                      </td>
-                      <td className="px-5 py-4 text-right">
-                        <a
-                          href={`${API_URL}/api/payments/download-invoice/${b.booking_id || `BKG-${b.id}`}?auth_token=${token}`}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 hover:bg-primary/20 text-primary px-3 py-1.5 text-xs font-bold transition hover:scale-[1.02] border border-primary/20 cursor-pointer"
-                        >
-                          <Download className="h-3.5 w-3.5" /> Invoice PDF
-                        </a>
                       </td>
                     </tr>
                   ))}
