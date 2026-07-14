@@ -33,7 +33,7 @@ export default function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-2 text-foreground">
           <div className="flex items-center justify-center">
-            <img src="/header_logo.jpeg" alt="AutoInspect" className="h-20 w-40 object-cover rounded-full shadow-sm" />
+            <img src="/newlogo.png" alt="AutoInspect" className="h-20 w-30" />
           </div>
         </Link>
         <nav className="hidden items-center gap-7 text-sm text-muted-foreground lg:flex">

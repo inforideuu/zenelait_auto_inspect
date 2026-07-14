@@ -197,8 +197,9 @@ function ContactPage() {
         <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr]">
           <div className="space-y-5">
             {[
+              { icon: MessageCircle, t: "Founder", v: "MOHAMMED HAKEEM L", s: "Autonique Inspect" },
               { icon: MessageCircle, t: "WhatsApp", v: "+91 95669 95602", s: "Replies within 15 min" },
-              { icon: Phone, t: "Phone", v: "+91 95669 95602", s: "Sun–Sat, 8am–10pm" },
+              { icon: Phone, t: "Phone", v: "+91 95669 95602", s: "Sun–Sat, 8am–6pm" },
               { icon: Mail, t: "Email", v: "Autonique.carinspection@gmail.com", s: "Replies within 2 hours" },
               { icon: MapPin, t: "Location", v: "Vasantha Garden Main St, Vasantha nagar, Chinna Chembarambakkam, Ayanavaram, Chennai, Tamil Nadu 600023", s: "Walk-in inspections welcome" },
               { icon: Clock, t: "Hours", v: "Open 7 days", s: "Emergency inspection available 24/7" },
@@ -366,7 +367,7 @@ function ContactPage() {
                 />
                 <Field
                   label="City"
-                  placeholder="Dubai"
+                  placeholder="chennai"
                   value={city}
                   onChange={setCity}
                 />

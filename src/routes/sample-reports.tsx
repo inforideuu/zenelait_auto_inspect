@@ -588,7 +588,7 @@ export default function SampleReportsPage() {
             <table class="header-banner">
               <tr>
                 <td style="width: 33%; text-align: left;">
-                  <img src="/header_logo.jpeg" width="110" height="85" style="width: 110px; height: 85px; display: block;" alt="AUTONIQUE INSPECT" />
+                  <img src="/newlogo.png" width="110" height="85" style="width: 110px; height: 85px; display: block;" alt="AUTONIQUE INSPECT" />
                 </td>
                 <td style="width: 33%; text-align: center; vertical-align: middle;">
                   <span style="font-size: 18px; font-weight: bold; color: #0f172a; letter-spacing: 0.5px;">${report.year} ${report.vehicle}</span>
@@ -718,7 +718,7 @@ export default function SampleReportsPage() {
             <table class="header-banner">
               <tr>
                 <td style="width: 33%; text-align: left;">
-                  <img src="/header_logo.jpeg" width="110" height="85" style="width: 110px; height: 85px; display: block;" alt="AUTONIQUE INSPECT" />
+                  <img src="/newlogo.png" width="110" height="85" style="width: 110px; height: 85px; display: block;" alt="AUTONIQUE INSPECT" />
                 </td>
                 <td style="width: 33%; text-align: center; vertical-align: middle;">
                   <span style="font-size: 18px; font-weight: bold; color: #0f172a; letter-spacing: 0.5px;">${report.year} ${report.vehicle}</span>

@@ -20,7 +20,7 @@ export default function SiteFooter() {
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 text-foreground">
               <div className="flex items-center justify-center">
-                <img src="/header_logo.jpeg" alt="AutoInspect" className="h-14 w-28 object-cover rounded-full shadow-sm" />
+                <img src="/newlogo.png" alt="AutoInspect" className="h-18 w-28" />
               </div>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
