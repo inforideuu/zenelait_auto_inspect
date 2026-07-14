@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Lock, Mail, ShieldAlert, Sparkles, User, Phone, MapPin } from "lucide-react";
 import { toast } from "sonner";
 import PageHeader from "@/components/PageHeader";
+import { API_URL } from "../config";
 
 export const Route = createFileRoute("/login")({
   component: LoginPage,
@@ -37,7 +38,7 @@ function LoginPage() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8000/api/auth/login", {
+      const response = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,7 +98,7 @@ function LoginPage() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8000/api/auth/register-customer", {
+      const response = await fetch(`${API_URL}/api/auth/register-customer`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -124,7 +125,7 @@ function LoginPage() {
       });
 
       // Auto-login after successful registration
-      const loginResponse = await fetch("http://localhost:8000/api/auth/login", {
+      const loginResponse = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

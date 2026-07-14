@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import PageHeader from "@/components/PageHeader";
 import { Clock, Mail, MapPin, MessageCircle, Phone, Send, Sparkles, CheckCircle, AlertTriangle } from "lucide-react";
 import { useState, useEffect } from "react";
+import { API_URL } from "../config";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
@@ -117,7 +118,7 @@ function ContactPage() {
           notes: notes,
         };
 
-        fetch("http://localhost:8000/api/bookings", {
+        fetch(`${API_URL}/api/bookings`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -139,52 +140,38 @@ function ContactPage() {
         return;
       }
 
-      // Standard Payment Flow
-      let amount = 1799; // Standard package default
-      const cleanPkgLower = cleanPackage.toLowerCase();
-      if (cleanPkgLower.includes("basic")) {
-        amount = 1299;
-      } else if (cleanPkgLower.includes("standard")) {
-        amount = 1799;
-      } else if (cleanPkgLower.includes("premium")) {
-        amount = 2999;
-      }
+      // Directly create booking on the backend without payment flow
+      const payload = {
+        full_name: fullName,
+        whatsapp_number: whatsappNumber,
+        vehicle_model: vehicleModel,
+        city: city,
+        inspection_location: inspectionLocation || null,
+        area: area || null,
+        pincode: pincode || null,
+        latitude: latitude ? parseFloat(latitude) : null,
+        longitude: longitude ? parseFloat(longitude) : null,
+        package: cleanPackage,
+        notes: notes || null,
+      };
 
-      // Directly create booking on the backend
-      fetch("http://localhost:8000/api/payments/confirm-booking", {
+      fetch(`${API_URL}/api/bookings`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Token ${localStorage.getItem("autoinspect_token") || ""}`
         },
-        body: JSON.stringify({
-          email: email,
-          booking_details: {
-            full_name: fullName,
-            whatsapp_number: whatsappNumber,
-            vehicle_model: vehicleModel,
-            city: city,
-            inspection_location: inspectionLocation || null,
-            area: area || null,
-            pincode: pincode || null,
-            latitude: latitude ? parseFloat(latitude) : null,
-            longitude: longitude ? parseFloat(longitude) : null,
-            package: cleanPackage,
-            notes: notes || null,
-            amount: amount,
-            currency: "INR"
-          }
-        })
+        body: JSON.stringify(payload)
       })
         .then(async (res) => {
           if (!res.ok) {
             const errData = await res.json();
-            throw new Error(errData.detail || "Failed to confirm booking.");
+            throw new Error(errData.detail || "Failed to submit booking.");
           }
           return res.json();
         })
         .then((data) => {
-          setCreatedBookingId(data.booking_id);
+          setCreatedBookingId(data.booking_id || `BKG-${data.id}`);
           setPaymentSuccess(true);
           setSent(true);
           toast.success("Inspection Booked & Confirmed Successfully!");
@@ -273,7 +260,7 @@ function ContactPage() {
               </div>
 
               <p className="mt-5 text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
-                Thank you! Your payment has been successfully captured and verified. We have emailed your official **PDF Invoice** to <strong className="text-foreground">{email}</strong>, and sent booking confirmations to your WhatsApp number.
+                Thank you! Your inspection booking has been received. We have sent booking confirmations to your WhatsApp number and will contact you shortly to confirm your slot.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 w-full max-w-sm justify-center">
@@ -307,15 +294,11 @@ function ContactPage() {
               </div>
 
               <h3 className="text-3xl font-extrabold tracking-tight text-foreground bg-gradient-to-r from-rose-400 to-orange-500 bg-clip-text text-transparent">
-                Payment Verification Failed
+                Booking Submission Failed
               </h3>
 
               <p className="mt-5 text-sm text-rose-400/90 bg-rose-500/5 border border-rose-500/10 p-4 rounded-2xl max-w-md mx-auto leading-relaxed">
-                {errorMessage || "We were unable to secure transaction authorization. Please verify your payment details and retry."}
-              </p>
-
-              <p className="mt-4 text-xs text-muted-foreground max-w-xs mx-auto leading-normal">
-                If money was debited from your account, please do not book again. Support will verify your status manually.
+                {errorMessage || "We were unable to submit your booking. Please check your network connection and try again."}
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 w-full max-w-sm justify-center">
@@ -326,7 +309,7 @@ function ContactPage() {
                   }}
                   className="neon-button inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-semibold text-primary-foreground cursor-pointer transition hover:scale-[1.02] bg-primary w-full"
                 >
-                  Retry Payment
+                  Retry Submission
                 </button>
                 <button
                   onClick={() => {
@@ -488,24 +471,6 @@ function ContactPage() {
               </p>
             </form>
           )}
-        </div>
-      </section>
-
-      <section className="border-y border-border/60 bg-secondary/30">
-        <div className="mx-auto max-w-7xl px-6 py-16">
-          <div className="grid gap-6 md:grid-cols-3">
-            {[
-              { c: "Dubai", a: "Sheikh Zayed Rd, Al Quoz", h: "Open 7 days · 8am–10pm" },
-              { c: "Riyadh", a: "King Fahd Rd, Olaya District", h: "Open 7 days · 8am–10pm" },
-              { c: "Doha", a: "Al Sadd, near City Center", h: "Open 6 days · 9am–9pm" },
-            ].map((o) => (
-              <div key={o.c} className="glass-card rounded-2xl p-6">
-                <p className="text-xs uppercase tracking-wider text-primary">{o.c}</p>
-                <p className="mt-2 text-lg font-semibold text-foreground">{o.a}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{o.h}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
     </>

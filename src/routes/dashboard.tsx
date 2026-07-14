@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import PageHeader from "@/components/PageHeader";
+import { API_URL } from "../config";
 
 export const Route = createFileRoute("/dashboard")({
   component: DashboardPage,
@@ -487,7 +488,7 @@ function DashboardPage() {
 
   const handleMarkNotificationRead = async (id: number) => {
     try {
-      await fetch(`http://localhost:8000/api/notifications/${id}`, {
+      await fetch(`${API_URL}/api/notifications/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -700,7 +701,7 @@ function DashboardPage() {
       try {
         if (storedRole === "admin" || storedRole === "staff") {
           // 1. Fetch Bookings
-          const bookingsRes = await fetch("http://localhost:8000/api/bookings", {
+          const bookingsRes = await fetch(`${API_URL}/api/bookings`, {
             headers: { "Authorization": `Token ${storedToken}` }
           });
           if (bookingsRes.ok) {
@@ -709,7 +710,7 @@ function DashboardPage() {
           }
 
           // 2. Fetch Reports
-          const reportsRes = await fetch("http://localhost:8000/api/reports", {
+          const reportsRes = await fetch(`${API_URL}/api/reports`, {
             headers: { "Authorization": `Token ${storedToken}` }
           });
           if (reportsRes.ok) {
@@ -718,7 +719,7 @@ function DashboardPage() {
           }
 
           // 3. Fetch Users dynamically from the backend auth/users API endpoint
-          const usersRes = await fetch("http://localhost:8000/api/auth/users", {
+          const usersRes = await fetch(`${API_URL}/api/auth/users`, {
             headers: { "Authorization": `Token ${storedToken}` }
           });
           if (usersRes.ok) {
@@ -729,7 +730,7 @@ function DashboardPage() {
           // 4. Fetch Staff accounts if Admin
           // 4. Fetch Staff accounts & notifications if Admin
           if (storedRole === "admin") {
-            const staffRes = await fetch("http://localhost:8000/api/auth/staff", {
+            const staffRes = await fetch(`${API_URL}/api/auth/staff`, {
               headers: { "Authorization": `Token ${storedToken}` }
             });
             if (staffRes.ok) {
@@ -737,7 +738,7 @@ function DashboardPage() {
               setStaffUsers(data);
             }
 
-            const notificationsRes = await fetch("http://localhost:8000/api/notifications", {
+            const notificationsRes = await fetch(`${API_URL}/api/notifications`, {
               headers: { "Authorization": `Token ${storedToken}` }
             });
             if (notificationsRes.ok) {
@@ -745,7 +746,7 @@ function DashboardPage() {
               setDbNotifications(notifsData);
             }
 
-            const revenueRes = await fetch("http://localhost:8000/api/payments/revenue-stats", {
+            const revenueRes = await fetch(`${API_URL}/api/payments/revenue-stats`, {
               headers: { "Authorization": `Token ${storedToken}` }
             });
             if (revenueRes.ok) {
@@ -756,7 +757,7 @@ function DashboardPage() {
 
         } else {
           // Customer flow: fetch reports assigned to current user
-          const customerRes = await fetch("http://localhost:8000/api/reports", {
+          const customerRes = await fetch(`${API_URL}/api/reports`, {
             headers: { "Authorization": `Token ${storedToken}` }
           });
           if (customerRes.ok) {
@@ -767,7 +768,7 @@ function DashboardPage() {
           }
 
           // Fetch bookings history for payment and status tracking
-          const bookingsRes = await fetch("http://localhost:8000/api/bookings", {
+          const bookingsRes = await fetch(`${API_URL}/api/bookings`, {
             headers: { "Authorization": `Token ${storedToken}` }
           });
           if (bookingsRes.ok) {
@@ -800,7 +801,7 @@ function DashboardPage() {
 
   const handleUpdateStatus = async (id: number, newStatus: string) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/bookings/${id}`, {
+      const response = await fetch(`${API_URL}/api/bookings/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -824,7 +825,7 @@ function DashboardPage() {
 
   const handleAcceptInspection = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/bookings/${id}/accept`, {
+      const response = await fetch(`${API_URL}/api/bookings/${id}/accept`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -848,7 +849,7 @@ function DashboardPage() {
   const handleRejectInspection = async (id: number) => {
     if (!confirm("Are you sure you want to reject this assigned inspection?")) return;
     try {
-      const response = await fetch(`http://localhost:8000/api/bookings/${id}/reject`, {
+      const response = await fetch(`${API_URL}/api/bookings/${id}/reject`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -871,7 +872,7 @@ function DashboardPage() {
 
   const handleStartTravel = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/bookings/${id}/start-travel`, {
+      const response = await fetch(`${API_URL}/api/bookings/${id}/start-travel`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -894,7 +895,7 @@ function DashboardPage() {
 
   const handleReachedLocation = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/bookings/${id}/reached-location`, {
+      const response = await fetch(`${API_URL}/api/bookings/${id}/reached-location`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -919,7 +920,7 @@ function DashboardPage() {
     if (!confirm("Are you sure you want to delete this inspection booking?")) return;
 
     try {
-      const response = await fetch(`http://localhost:8000/api/bookings/${id}`, {
+      const response = await fetch(`${API_URL}/api/bookings/${id}`, {
         method: "DELETE",
         headers: { "Authorization": `Token ${token}` }
       });
@@ -936,7 +937,7 @@ function DashboardPage() {
   const handleCreateStaff = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:8000/api/auth/staff", {
+      const res = await fetch(`${API_URL}/api/auth/staff`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -989,7 +990,7 @@ function DashboardPage() {
     if (!confirm("Are you sure you want to permanently delete this staff member?")) return;
 
     try {
-      const res = await fetch(`http://localhost:8000/api/auth/staff?id=${id}`, {
+      const res = await fetch(`${API_URL}/api/auth/staff?id=${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Token ${token}`
@@ -1033,7 +1034,7 @@ function DashboardPage() {
         payload.password = editSPassword;
       }
 
-      const res = await fetch("http://localhost:8000/api/auth/staff", {
+      const res = await fetch(`${API_URL}/api/auth/staff`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -1102,7 +1103,7 @@ function DashboardPage() {
       formData.append("file", file);
 
       try {
-        const res = await fetch("http://localhost:8000/api/upload", {
+        const res = await fetch(`${API_URL}/api/upload`, {
           method: "POST",
           headers: {
             "Authorization": `Token ${localStorage.getItem("autoinspect_token") || token}`
@@ -1137,7 +1138,7 @@ function DashboardPage() {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:8000/api/upload", {
+      const res = await fetch(`${API_URL}/api/upload`, {
         method: "POST",
         headers: {
           "Authorization": `Token ${localStorage.getItem("autoinspect_token") || token}`
@@ -1168,7 +1169,7 @@ function DashboardPage() {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:8000/api/upload", {
+      const res = await fetch(`${API_URL}/api/upload`, {
         method: "POST",
         headers: {
           "Authorization": `Token ${localStorage.getItem("autoinspect_token") || token}`
@@ -1202,7 +1203,7 @@ function DashboardPage() {
       formData.append("file", file);
 
       try {
-        const res = await fetch("http://localhost:8000/api/upload", {
+        const res = await fetch(`${API_URL}/api/upload`, {
           method: "POST",
           headers: {
             "Authorization": `Token ${localStorage.getItem("autoinspect_token") || token}`
@@ -1264,7 +1265,7 @@ function DashboardPage() {
       formData.append("file", file);
 
       try {
-        const res = await fetch("http://localhost:8000/api/upload", {
+        const res = await fetch(`${API_URL}/api/upload`, {
           method: "POST",
           headers: {
             "Authorization": `Token ${localStorage.getItem("autoinspect_token") || token}`
@@ -1345,7 +1346,7 @@ function DashboardPage() {
       formData.append("file", file);
 
       try {
-        const res = await fetch("http://localhost:8000/api/upload", {
+        const res = await fetch(`${API_URL}/api/upload`, {
           method: "POST",
           headers: {
             "Authorization": `Token ${localStorage.getItem("autoinspect_token") || token}`
@@ -1387,7 +1388,7 @@ function DashboardPage() {
       formData.append("file", file);
 
       try {
-        const res = await fetch("http://localhost:8000/api/upload", {
+        const res = await fetch(`${API_URL}/api/upload`, {
           method: "POST",
           headers: {
             "Authorization": `Token ${localStorage.getItem("autoinspect_token") || token}`
@@ -1426,7 +1427,7 @@ function DashboardPage() {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:8000/api/upload", {
+      const res = await fetch(`${API_URL}/api/upload`, {
         method: "POST",
         headers: {
           "Authorization": `Token ${localStorage.getItem("autoinspect_token") || token}`
@@ -1457,7 +1458,7 @@ function DashboardPage() {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:8000/api/upload", {
+      const res = await fetch(`${API_URL}/api/upload`, {
         method: "POST",
         headers: {
           "Authorization": `Token ${localStorage.getItem("autoinspect_token") || token}`
@@ -1577,8 +1578,8 @@ function DashboardPage() {
 
     try {
       const url = editingReportId
-        ? `http://localhost:8000/api/reports/${editingReportId}`
-        : "http://localhost:8000/api/reports";
+        ? `${API_URL}/api/reports/${editingReportId}`
+        : `${API_URL}/api/reports`;
       const method = editingReportId ? "PUT" : "POST";
 
       const res = await fetch(url, {
@@ -1826,7 +1827,7 @@ function DashboardPage() {
     if (!confirm(`Are you sure you want to permanently delete the inspection report ${reportId}?`)) return;
 
     try {
-      const res = await fetch(`http://localhost:8000/api/reports/${reportId}`, {
+      const res = await fetch(`${API_URL}/api/reports/${reportId}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Token ${token}`
@@ -1880,7 +1881,7 @@ function DashboardPage() {
     formData.append("pdf_file", pdfFile);
 
     try {
-      const res = await fetch(`http://localhost:8000/api/reports/${selectedReportId}`, {
+      const res = await fetch(`${API_URL}/api/reports/${selectedReportId}`, {
         method: "PATCH",
         headers: {
           "Authorization": `Token ${token}`
@@ -1908,7 +1909,7 @@ function DashboardPage() {
     toast.info("Downloading certified A4 PDF Report...");
 
     // Trigger direct backend PDF render download
-    window.open(`http://localhost:8000/api/reports/${customerReport.id}/pdf?auth_token=${token}`, "_blank");
+    window.open(`${API_URL}/api/reports/${customerReport.id}/pdf?auth_token=${token}`, "_blank");
   };
 
   // Filter computation
@@ -3747,7 +3748,7 @@ function DashboardPage() {
                                       const val = e.target.value;
                                       const staffId = val ? parseInt(val) : null;
                                       try {
-                                        const response = await fetch(`http://localhost:8000/api/bookings/${b.id}`, {
+                                        const response = await fetch(`${API_URL}/api/bookings/${b.id}`, {
                                           method: "PATCH",
                                           headers: {
                                             "Content-Type": "application/json",
@@ -3943,7 +3944,7 @@ function DashboardPage() {
                             <td className="px-6 py-4 text-right">
                               <div className="flex items-center justify-end gap-2">
                                 <a
-                                  href={`http://localhost:8000/api/reports/${r.id}/pdf?auth_token=${token}`}
+                                  href={`${API_URL}/api/reports/${r.id}/pdf?auth_token=${token}`}
                                   target="_blank"
                                   rel="noreferrer"
                                   className="p-1.5 text-muted-foreground hover:text-indigo-400 rounded transition hover:bg-indigo-500/10 inline-flex items-center justify-center"
@@ -4157,7 +4158,7 @@ function DashboardPage() {
                       </td>
                       <td className="px-5 py-4 text-right">
                         <a
-                          href={`http://localhost:8000/api/payments/download-invoice/${b.booking_id || `BKG-${b.id}`}?auth_token=${token}`}
+                          href={`${API_URL}/api/payments/download-invoice/${b.booking_id || `BKG-${b.id}`}?auth_token=${token}`}
                           target="_blank"
                           rel="noreferrer"
                           className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 hover:bg-primary/20 text-primary px-3 py-1.5 text-xs font-bold transition hover:scale-[1.02] border border-primary/20 cursor-pointer"
